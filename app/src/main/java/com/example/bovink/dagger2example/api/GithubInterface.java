@@ -8,7 +8,6 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -18,11 +17,7 @@ import retrofit2.http.QueryMap;
  * @since 2016/12/6
  */
 
-public interface API {
-
-    @GET("/users/{user}/repos")
-    Call<List<Repo>> getRepoList(@Path("user") String username, @Query("page") String page, @Query("per_page") String per_page);
-
+public interface GithubInterface {
     @GET("/users/{user}/repos")
     Call<List<Repo>> getRepoList(@Path("user") String username, @QueryMap Map<String, String> options);
 }
