@@ -2,8 +2,6 @@ package com.example.bovink.dagger2example.module;
 
 import android.app.Application;
 
-import javax.inject.Named;
-
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
@@ -33,34 +31,34 @@ public class NetModule {
         return new Cache(application.getCacheDir(), cacheSize);
     }
 
-    @Provides
-    @Named("cache")
-    OkHttpClient providesOkHttpClientWithCache(Cache cache) {
-        return new OkHttpClient.Builder()
-                .cache(cache)
-                .build();
-    }
+//    @Provides
+//    @Named("cache")
+//    OkHttpClient providesOkHttpClientWithCache(Cache cache) {
+//        return new OkHttpClient.Builder()
+//                .cache(cache)
+//                .build();
+//    }
 
+    //    @Named("no cache")
     @Provides
-    @Named("no cache")
     OkHttpClient providesOkHttpClient() {
         return new OkHttpClient.Builder()
                 .build();
     }
 
-    @Provides
-    @Named("cache")
-    Retrofit providesRetrofitWithCache(@Named("cache") OkHttpClient okHttpClient) {
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
-    }
+//    @Provides
+//    @Named("cache")
+//    Retrofit providesRetrofitWithCache(@Named("cache") OkHttpClient okHttpClient) {
+//        return new Retrofit.Builder()
+//                .baseUrl(baseUrl)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .client(okHttpClient)
+//                .build();
+//    }
 
     @Provides
-    @Named("no cache")
-    Retrofit providesRetrofit(@Named("no cache") OkHttpClient okHttpClient) {
+//    @Named("no cache")
+    Retrofit providesRetrofit(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
