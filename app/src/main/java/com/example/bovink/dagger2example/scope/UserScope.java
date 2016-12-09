@@ -1,4 +1,4 @@
-package com.example.bovink.dagger2example.dependent_component;
+package com.example.bovink.dagger2example.scope;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

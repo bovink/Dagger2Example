@@ -1,7 +1,8 @@
-package com.example.bovink.dagger2example.dependent_component;
+package com.example.bovink.dagger2example.component;
 
 import com.example.bovink.dagger2example.MainActivity;
-import com.example.bovink.dagger2example.component.NetComponent;
+import com.example.bovink.dagger2example.module.GithubModule;
+import com.example.bovink.dagger2example.scope.UserScope;
 
 import dagger.Component;
 
@@ -14,6 +15,6 @@ import dagger.Component;
 
 @UserScope
 @Component(dependencies = NetComponent.class, modules = GithubModule.class)
-public interface GithubCompnent {
+public interface GithubComponent {
     void inject(MainActivity mainActivity);
 }

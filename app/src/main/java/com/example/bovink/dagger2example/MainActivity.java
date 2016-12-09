@@ -3,13 +3,13 @@ package com.example.bovink.dagger2example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.bovink.dagger2example.component.DaggerGithubComponent;
 import com.example.bovink.dagger2example.component.DaggerNetComponent;
+import com.example.bovink.dagger2example.component.GithubComponent;
 import com.example.bovink.dagger2example.component.NetComponent;
-import com.example.bovink.dagger2example.dependent_component.DaggerGithubCompnent;
-import com.example.bovink.dagger2example.dependent_component.GithubCompnent;
-import com.example.bovink.dagger2example.dependent_component.GithubModule;
 import com.example.bovink.dagger2example.model.Repo;
 import com.example.bovink.dagger2example.module.ApplicationModule;
+import com.example.bovink.dagger2example.module.GithubModule;
 import com.example.bovink.dagger2example.module.NetModule;
 
 import java.util.HashMap;
@@ -35,20 +35,18 @@ public class MainActivity extends AppCompatActivity {
         daggerDependentInstance();
     }
 
-
-
     private void daggerDependentInstance() {
         NetComponent netComponent = DaggerNetComponent.builder()
                 .applicationModule(new ApplicationModule(getApplication()))
                 .netModule(new NetModule("https://api.github.com"))
                 .build();
 
-        GithubCompnent githubCompnent = DaggerGithubCompnent.builder()
+        GithubComponent githubComponent = DaggerGithubComponent.builder()
                 .netComponent(netComponent)
                 .githubModule(new GithubModule())
                 .build();
 
-        githubCompnent.inject(this);
+        githubComponent.inject(this);
 
         HashMap<String, String> options = new HashMap<>();
         options.put("page", "1");

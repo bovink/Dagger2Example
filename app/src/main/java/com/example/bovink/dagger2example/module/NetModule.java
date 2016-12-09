@@ -31,33 +31,14 @@ public class NetModule {
         return new Cache(application.getCacheDir(), cacheSize);
     }
 
-//    @Provides
-//    @Named("cache")
-//    OkHttpClient providesOkHttpClientWithCache(Cache cache) {
-//        return new OkHttpClient.Builder()
-//                .cache(cache)
-//                .build();
-//    }
-
-    //    @Named("no cache")
     @Provides
-    OkHttpClient providesOkHttpClient() {
+    OkHttpClient providesOkHttpClientWithCache(Cache cache) {
         return new OkHttpClient.Builder()
+                .cache(cache)
                 .build();
     }
 
-//    @Provides
-//    @Named("cache")
-//    Retrofit providesRetrofitWithCache(@Named("cache") OkHttpClient okHttpClient) {
-//        return new Retrofit.Builder()
-//                .baseUrl(baseUrl)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .client(okHttpClient)
-//                .build();
-//    }
-
     @Provides
-//    @Named("no cache")
     Retrofit providesRetrofit(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)

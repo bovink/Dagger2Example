@@ -1,6 +1,7 @@
-package com.example.bovink.dagger2example.dependent_component;
+package com.example.bovink.dagger2example.module;
 
 import com.example.bovink.dagger2example.model.Repo;
+import com.example.bovink.dagger2example.scope.UserScope;
 
 import java.util.List;
 import java.util.Map;
