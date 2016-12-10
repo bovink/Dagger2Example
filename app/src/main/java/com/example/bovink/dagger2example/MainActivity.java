@@ -3,13 +3,9 @@ package com.example.bovink.dagger2example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.bovink.dagger2example.component.DaggerNetComponent;
 import com.example.bovink.dagger2example.component.GithubSubcomponent;
-import com.example.bovink.dagger2example.component.NetComponent;
 import com.example.bovink.dagger2example.model.Repo;
-import com.example.bovink.dagger2example.module.ApplicationModule;
 import com.example.bovink.dagger2example.module.GithubModule;
-import com.example.bovink.dagger2example.module.NetModule;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,13 +33,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void daggerInstance() {
-        NetComponent netComponent = DaggerNetComponent.builder()
-                .applicationModule(new ApplicationModule(getApplication()))
-                .netModule(new NetModule("https://api.github.com"))
-                .build();
 
         GithubSubcomponent.Builder builder = (GithubSubcomponent.Builder)
-                netComponent.subcomponentBuilders()
+                ((MyApplication) getApplication()).getNetComponent()
+                        .subcomponentBuilders()
                         .get(GithubSubcomponent.Builder.class)
                         .get();
 
@@ -56,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         HashMap<String, String> options = new HashMap<>();
         options.put("page", "1");
-        options.put("per_page", "4");
+        options.put("per_page", "5");
         Call<List<Repo>> call = githubInterface.getRepoList("bovink", options);
 
         call.enqueue(new Callback<List<Repo>>() {
