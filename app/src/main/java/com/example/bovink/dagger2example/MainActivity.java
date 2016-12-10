@@ -3,11 +3,11 @@ package com.example.bovink.dagger2example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.bovink.dagger2example.api.GithubInterface;
 import com.example.bovink.dagger2example.component.DaggerNetComponent;
 import com.example.bovink.dagger2example.component.NetComponent;
 import com.example.bovink.dagger2example.model.Repo;
 import com.example.bovink.dagger2example.module.ApplicationModule;
+import com.example.bovink.dagger2example.module.GithubModule;
 import com.example.bovink.dagger2example.module.NetModule;
 
 import java.util.HashMap;
@@ -18,13 +18,12 @@ import javax.inject.Inject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     private List<Repo> repos;
 
     @Inject
-    Retrofit retrofit;
+    GithubModule.GithubInterface githubInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
                 .netModule(new NetModule("https://api.github.com"))
                 .build();
 
-        netComponent.inject(this);
+        netComponent.newGithubSubComponent(new GithubModule())
+                .inject(this);
     }
 
     private void request() {
-        GithubInterface githubInterface = retrofit.create(GithubInterface.class);
 
         HashMap<String, String> options = new HashMap<>();
         options.put("page", "1");
-        options.put("per_page", "5");
+        options.put("per_page", "2");
         Call<List<Repo>> call = githubInterface.getRepoList("bovink", options);
 
         call.enqueue(new Callback<List<Repo>>() {

@@ -1,7 +1,7 @@
 package com.example.bovink.dagger2example.component;
 
-import com.example.bovink.dagger2example.MainActivity;
 import com.example.bovink.dagger2example.module.ApplicationModule;
+import com.example.bovink.dagger2example.module.GithubModule;
 import com.example.bovink.dagger2example.module.NetModule;
 
 import dagger.Component;
@@ -15,5 +15,5 @@ import dagger.Component;
 
 @Component(modules = {NetModule.class, ApplicationModule.class})
 public interface NetComponent {
-    void inject(MainActivity mainActivity);
+    GithubSubComponent newGithubSubComponent(GithubModule githubModule);
 }
