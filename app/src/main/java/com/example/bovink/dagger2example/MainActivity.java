@@ -14,21 +14,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import okhttp3.Cache;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private List<Repo> repos;
 
     @Inject
-    @Named("cache")
     Retrofit retrofit;
 
     @Override
@@ -37,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         daggerInstance();
-//        normalInstance();
 
         request();
     }
@@ -49,22 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         netComponent.inject(this);
-    }
-
-    private void normalInstance() {
-
-        int cacheSize = 10 * 1024 * 1024;
-        Cache cache = new Cache(getApplication().getCacheDir(), cacheSize);
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .cache(cache)
-                .build();
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
     }
 
     private void request() {
