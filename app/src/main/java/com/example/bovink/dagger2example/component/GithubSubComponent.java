@@ -15,7 +15,7 @@ import dagger.Subcomponent;
 
 @GithubScope
 @Subcomponent(modules = GithubModule.class)
-public interface GithubSubComponent {
+public interface GithubSubcomponent {
 
     void inject(MainActivity mainActivity);
 }
