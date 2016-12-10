@@ -4,11 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.bovink.dagger2example.api.GithubInterface;
-import com.example.bovink.dagger2example.component.DaggerNetComponent;
-import com.example.bovink.dagger2example.component.NetComponent;
 import com.example.bovink.dagger2example.model.Repo;
-import com.example.bovink.dagger2example.module.ApplicationModule;
-import com.example.bovink.dagger2example.module.NetModule;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,12 +39,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void daggerInstance() {
-        NetComponent netComponent = DaggerNetComponent.builder()
-                .applicationModule(new ApplicationModule(getApplication()))
-                .netModule(new NetModule("https://api.github.com"))
-                .build();
 
-        netComponent.inject(this);
+        ((MyApplication)getApplication()).getNetComponent()
+                .inject(this);
     }
 
     private void normalInstance() {
