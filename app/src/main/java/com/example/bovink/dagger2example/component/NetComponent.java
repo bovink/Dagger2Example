@@ -1,8 +1,12 @@
 package com.example.bovink.dagger2example.component;
 
+import com.example.bovink.dagger2example.binder.ApplicationBinders;
 import com.example.bovink.dagger2example.module.ApplicationModule;
-import com.example.bovink.dagger2example.module.GithubModule;
 import com.example.bovink.dagger2example.module.NetModule;
+
+import java.util.Map;
+
+import javax.inject.Provider;
 
 import dagger.Component;
 
@@ -13,7 +17,7 @@ import dagger.Component;
  * @since 2016/12/6
  */
 
-@Component(modules = {NetModule.class, ApplicationModule.class})
+@Component(modules = {NetModule.class, ApplicationModule.class, ApplicationBinders.class})
 public interface NetComponent {
-    GithubSubComponent newGithubSubComponent(GithubModule githubModule);
+    Map<Class<?>, Provider<GithubSubcomponent.SubcomponentBuilder>> subcomponentBuilders();
 }
