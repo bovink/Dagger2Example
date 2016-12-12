@@ -3,6 +3,7 @@ package com.example.bovink.dagger2example.module;
 import android.app.Application;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -50,6 +51,7 @@ public class NetModule {
 
     @Provides
     @Named("cache")
+    @Singleton
     Retrofit providesRetrofitWithCache(@Named("cache") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
