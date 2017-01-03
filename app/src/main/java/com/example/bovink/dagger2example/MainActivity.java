@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void daggerInstance() {
         ((MyApplication) getApplication()).getNetComponent()
-                .githubSubcomponent(new GithubModule())
+                .githubSubComponent(new GithubModule())
                 .inject(this);
     }
 

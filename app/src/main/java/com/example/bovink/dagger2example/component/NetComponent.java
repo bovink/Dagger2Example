@@ -15,5 +15,5 @@ import dagger.Component;
 
 @Component(modules = {NetModule.class, ApplicationModule.class})
 public interface NetComponent {
-    GithubSubcomponent githubSubcomponent(GithubModule githubModule);
+    GithubSubComponent githubSubComponent(GithubModule githubModule);
 }
