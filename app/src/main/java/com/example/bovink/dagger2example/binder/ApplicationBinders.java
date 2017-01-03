@@ -1,6 +1,6 @@
 package com.example.bovink.dagger2example.binder;
 
-import com.example.bovink.dagger2example.component.GithubSubcomponent;
+import com.example.bovink.dagger2example.component.GithubSubComponent;
 import com.example.bovink.dagger2example.scope.SubcomponentKey;
 
 import dagger.Binds;
@@ -14,10 +14,10 @@ import dagger.multibindings.IntoMap;
  * @since 2016/12/10
  */
 
-@Module(subcomponents = GithubSubcomponent.class)
+@Module(subcomponents = GithubSubComponent.class)
 public abstract class ApplicationBinders {
     @Binds
     @IntoMap
-    @SubcomponentKey(GithubSubcomponent.Builder.class)
-    public abstract GithubSubcomponent.SubcomponentBuilder mainActivity(GithubSubcomponent.Builder impl);
+    @SubcomponentKey(GithubSubComponent.Builder.class)
+    public abstract GithubSubComponent.SubcomponentBuilder mainActivity(GithubSubComponent.Builder impl);
 }

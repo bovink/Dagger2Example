@@ -3,7 +3,7 @@ package com.example.bovink.dagger2example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.bovink.dagger2example.component.GithubSubcomponent;
+import com.example.bovink.dagger2example.component.GithubSubComponent;
 import com.example.bovink.dagger2example.model.Repo;
 import com.example.bovink.dagger2example.module.GithubModule;
 
@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void daggerInstance() {
 
-        GithubSubcomponent.Builder builder = (GithubSubcomponent.Builder)
+        GithubSubComponent.Builder builder = (GithubSubComponent.Builder)
                 ((MyApplication) getApplication()).getNetComponent()
                         .subcomponentBuilders()
-                        .get(GithubSubcomponent.Builder.class)
+                        .get(GithubSubComponent.Builder.class)
                         .get();
 
         builder.githubModule(new GithubModule())

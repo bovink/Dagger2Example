@@ -19,5 +19,5 @@ import dagger.Component;
 
 @Component(modules = {NetModule.class, ApplicationModule.class, ApplicationBinders.class})
 public interface NetComponent {
-    Map<Class<?>, Provider<GithubSubcomponent.SubcomponentBuilder>> subcomponentBuilders();
+    Map<Class<?>, Provider<GithubSubComponent.SubcomponentBuilder>> subcomponentBuilders();
 }

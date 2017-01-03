@@ -15,12 +15,12 @@ import dagger.Subcomponent;
 
 @GithubScope
 @Subcomponent(modules = GithubModule.class)
-public interface GithubSubcomponent {
+public interface GithubSubComponent {
 
     void inject(MainActivity mainActivity);
 
     @Subcomponent.Builder
-    interface Builder extends SubcomponentBuilder<GithubSubcomponent> {
+    interface Builder extends SubcomponentBuilder<GithubSubComponent> {
         Builder githubModule(GithubModule module);
     }
 
